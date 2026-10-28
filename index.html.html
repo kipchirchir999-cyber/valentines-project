@@ -1,0 +1,238 @@
+Here’s the complete `website.html`. The share links use the page’s current URL, so **publish the page first**—a link to a file on your computer won’t work for others.
+
+````html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Survey</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 40px 16px;
+            font-family: Arial, sans-serif;
+            color: #382334;
+            background: linear-gradient(135deg, #ffe1e8, #f8b8d0, #e8c8fa);
+        }
+
+        .card {
+            width: min(100%, 560px);
+            margin: 0 auto;
+            padding: 32px;
+            background: rgba(255, 255, 255, 0.92);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 24px;
+            box-shadow: 0 16px 40px rgba(100, 40, 75, 0.16);
+        }
+
+        header {
+            margin-bottom: 28px;
+            text-align: center;
+        }
+
+        .heart {
+            font-size: 2rem;
+        }
+
+        h1 {
+            margin: 8px 0;
+            color: #a83268;
+        }
+
+        header p {
+            margin: 0;
+            color: #765d70;
+        }
+
+        label {
+            display: block;
+            margin: 18px 0 7px;
+            font-weight: 700;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #e4cbd8;
+            border-radius: 12px;
+            background: #fffafd;
+            color: #382334;
+            font: inherit;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: 3px solid #f5c1d8;
+            border-color: #c94d84;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        button,
+        .share-links a {
+            display: inline-block;
+            padding: 13px 18px;
+            border: 0;
+            border-radius: 12px;
+            background: linear-gradient(90deg, #d8437e, #a83268);
+            color: white;
+            font: inherit;
+            font-weight: 700;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        form button {
+            width: 100%;
+            margin-top: 24px;
+        }
+
+        button:hover,
+        .share-links a:hover {
+            filter: brightness(1.08);
+        }
+
+        .quick-links,
+        .share-links {
+            margin-top: 28px;
+            padding-top: 20px;
+            border-top: 1px solid #ecdce5;
+            text-align: center;
+        }
+
+        .quick-links h2,
+        .share-links h2 {
+            margin: 0 0 12px;
+            font-size: 1.1rem;
+        }
+
+        .quick-links a {
+            display: inline-block;
+            margin: 4px 8px;
+            color: #a83268;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .quick-links a:hover {
+            text-decoration: underline;
+        }
+
+        .share-links a,
+        .share-links button {
+            margin: 5px;
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                padding: 24px 18px;
+            }
+        }
+    </style>
+</head>
+<body id="top">
+    <main class="card">
+        <header>
+            <div class="heart" aria-hidden="true">💌</div>
+            <h1>Love Survey</h1>
+            <p>A few little questions for someone special ♥</p>
+        </header>
+
+        <form id="survey">
+            <label for="name">Your name</label>
+            <input id="name" name="name" type="text" placeholder="Your name">
+
+            <label for="love">How much do you love me?</label>
+            <select id="love" name="love">
+                <option>90%</option>
+                <option>70%</option>
+                <option>50%</option>
+                <option>10%</option>
+            </select>
+
+            <label for="obsessed">How obsessed are you?</label>
+            <select id="obsessed" name="obsessed">
+                <option>I go crazy after looking at your picture</option>
+                <option>I feel bad whenever you don't respond</option>
+                <option>I feel jealous seeing you around other girls</option>
+            </select>
+
+            <label for="date">What would your perfect date be?</label>
+            <select id="date" name="date">
+                <option>Just good food and music</option>
+                <option>Just a walk in nature</option>
+                <option>Doesn't matter as long as we're together</option>
+            </select>
+
+            <label for="red-flag">What is your biggest red flag?</label>
+            <select id="red-flag" name="red-flag">
+                <option>Minimal communication between us</option>
+                <option>Nikikosa kupick calls zako</option>
+                <option>Nikientertain madem DM</option>
+            </select>
+
+            <label for="message">Leave me a message, sweetheart ♥</label>
+            <textarea id="message" name="message" placeholder="Write your message here..."></textarea>
+
+            <button type="submit">Send with love ♥</button>
+        </form>
+
+        <section class="quick-links" aria-labelledby="links-heading">
+            <h2 id="links-heading">Quick links</h2>
+            <a href="#survey">Take the survey</a>
+            <a href="#message">Write a message</a>
+            <a href="#top">Back to top ↑</a>
+        </section>
+
+        <section class="share-links" aria-labelledby="share-heading">
+            <h2 id="share-heading">Share this survey</h2>
+            <button type="button" id="share-button">Share with friends</button>
+            <a id="whatsapp-link" href="#" target="_blank" rel="noopener">
+                Share on WhatsApp
+            </a>
+        </section>
+    </main>
+
+    <script>
+        const surveyUrl = window.location.href;
+        const shareText = `Take my Love Survey ♥ ${surveyUrl}`;
+
+        document.getElementById("whatsapp-link").href =
+            `https://wa.me/?text=${encodeURIComponent(shareText)}`;
+
+        document.getElementById("share-button").addEventListener("click", async () => {
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: "Love Survey",
+                        text: "Take my Love Survey ♥",
+                        url: surveyUrl
+                    });
+                } catch (error) {
+                    // Sharing was cancelled or unavailable.
+                }
+            } else {
+                try {
+                    await navigator.clipboard.writeText(surveyUrl);
+                    alert("Survey link copied. You can paste it into WhatsApp or Messenger.");
+                } catch (error) {
+                    prompt("Copy and share this survey link:", surveyUrl);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+````
